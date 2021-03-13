@@ -1,0 +1,10 @@
+title = "Line begins with `Hack`"
+category = "antipattern"
+severity = "major"
+description = """
+Hey good people of DeepSource!
+This is a sample issue to identify lines starting with `hack`, irrespective of the case.
+
+And, this is how you can add issues in DeepSource. Stop commenting on PRs asking everyone to fix the same thing yet again!
+"""
+recommended = true
