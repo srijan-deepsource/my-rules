@@ -20,6 +20,7 @@ def prepare_result(issues):
 def publish_results(result):
     """Publish the analysis results."""
     # write results into a json file:
+    print("Raising issues: ", result)
     res_file = tempfile.NamedTemporaryFile().name
     with open(res_file, "w") as fp:
         fp.write(json.dumps(result))
@@ -28,8 +29,17 @@ def publish_results(result):
     subprocess.run(["/toolbox/marvin", "--publish-report", res_file])
 
 
+def get_vcs_filepath(filepath):
+    """Remove the /code/ prefix."""
+    if filepath.startswith("/code/"):
+        filepath = filepath[6:]
+
+    return filepath
+
+
 def get_issue_struct(issue_code, issue_txt, filepath, line, col):
     """Prepare issue structure for the given issue data."""
+    filepath = get_vcs_filepath(filepath)
     return {
         "issue_code": issue_code,
         "issue_text": issue_txt,
